@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 
 
 /**
@@ -101,5 +105,42 @@ public class SignInFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        //get the spinner from the xml.
+        Spinner carrera = getActivity().findViewById(R.id.carrera);
+        Spinner semestre = getActivity().findViewById(R.id.semestre);
+        //create a list of items for the spinner.
+        String[] itemsCarrera = new String[]{"Sistemas computacionales",
+                                      "Mecanica", "Materiales","Mecatronica",
+                                      "Gestion", "Logistica"};
+        String[] itemsSemestre = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapterCarrera = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item
+                , itemsCarrera);
+        ArrayAdapter<String> adapterSemestre= new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item
+                , itemsSemestre);
+        //set the spinners adapter to the previously created one.
+        carrera.setAdapter(adapterCarrera);
+        semestre.setAdapter(adapterSemestre);
+
+//        String[] COUNTRIES = new String[] {"Ing. Sistemas Computacionales", "Ing. Mecanica",
+//                "Ing. Mecatronica", "Ing. Logistica"};
+//
+//        ArrayAdapter<String> adapter =
+//                new ArrayAdapter<>(
+//                        getContext(),
+//                        R.layout.dropdown_menu_popup_item,
+//                        COUNTRIES);
+//
+//        AutoCompleteTextView editTextFilledExposedDropdown = getActivity().findViewById(R.id.filled_exposed_dropdown);
+//        editTextFilledExposedDropdown.setAdapter(adapter);
     }
 }

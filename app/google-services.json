@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "557433159782",
+    "firebase_url": "https://itqin-a4449.firebaseio.com",
+    "project_id": "itqin-a4449",
+    "storage_bucket": "itqin-a4449.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557433159782:android:07fc86c47651c40266eda7",
+        "android_client_info": {
+          "package_name": "com.sistemas.itqin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557433159782-2m85ljem1dqj9avg5sh3bu3qf7b6np8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfo3bCI_i9cFND--zZz0iBnZkpKo-UM1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557433159782-2m85ljem1dqj9avg5sh3bu3qf7b6np8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

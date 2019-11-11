@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
+    android:background="#ECEFF1"
     android:gravity="center_vertical"
     android:padding="20dp"
     tools:context=".LoginFragment">
@@ -17,65 +18,64 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    app:srcCompat="@drawable/logoapp2" />
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        app:srcCompat="@drawable/itqlogo" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/userIDTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:boxStrokeColor="#FF9800">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/userIDTextInputLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:boxStrokeColor="#FF9800">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/userIDTextInputEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="email"
-                            android:inputType="textEmailAddress"
-                            android:textColorHighlight="#FFC107"
-                            android:textColorLink="#FF9800"
-                            android:textCursorDrawable="@color/colorPrimary" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/passwordIDTextInputLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userIDTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:boxStrokeColor="#FF9800">
+                        android:hint="email"
+                        android:inputType="textEmailAddress"
+                        android:textColorHighlight="#FFC107"
+                        android:textColorLink="#FF9800"
+                        android:textCursorDrawable="@color/colorPrimary" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/passwordIDTextInputEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Password"
-                            android:inputType="textPassword"
-                            android:textColorLink="#FF9800" />
-                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/loginButton"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordIDTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    app:boxStrokeColor="#FF9800">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordIDTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Ingresar"
-                        />
-                </LinearLayout>
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textColorLink="#FF9800" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/loginButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Ingresar" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

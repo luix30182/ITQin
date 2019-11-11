@@ -1,5 +1,6 @@
 package com.sistemas.itqin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,12 +8,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,6 +61,10 @@ public class SignInFragment extends Fragment {
 
     String semestreV;
     String carreraV;
+
+    private TabAdapter adapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     private FirebaseAuth firebaseAuth;
 
@@ -156,7 +164,7 @@ public class SignInFragment extends Fragment {
         //create a list of items for the spinner.
         final String[] itemsCarrera = new String[]{"Ing.Sistemas computacionales",
                 "Ing.Mecanica", "Ing.Materiales", "Ing.Mecatronica",
-                "Ing.Gestion", "Ing.Logistica", "Lic.Arquitectura"};
+                "Ing.Gestion Empresarial", "Ing.Logistica", "Lic.Arquitectura"};
         String[] itemsSemestre = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
@@ -235,10 +243,10 @@ public class SignInFragment extends Fragment {
                                     newUser.put("carrera", carreraV);
                                     newUser.put("ncontrol", noControl.getText().toString());
                                     newUser.put("rol", "alumno");
-                                    newUser.put("qrcode", "");
+                                    newUser.put("qrcode", "https://i.imgur.com/BZZ7i9Y.png");
                                     newUser.put("imgProfile", "https://i.imgur.com/8BOkh8y.png");
                                     newUser.put("semestre", Integer.parseInt(semestreV));
-                                    newUser.put("activo", true);
+                                    newUser.put("activo", false);
 
                                     db.collection("users").document(uid).set(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -253,8 +261,20 @@ public class SignInFragment extends Fragment {
 
                                             confirmPassword.setText("");
 
+                                            InputMethodManager imm =
+                                                    (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                                            View view = getActivity().getCurrentFocus();
+                                            if (view == null) {
+                                                view = new View(getActivity());
+                                            }
+                                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                                             Toast.makeText(getActivity(), "Cuenta creada exitosamente",
                                                     Toast.LENGTH_SHORT).show();
+
+                                            TabLayout tabHost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                                            tabHost.getTabAt(0).select();
+
                                         }
                                     })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -265,13 +285,14 @@ public class SignInFragment extends Fragment {
                                             });
 
                                 }else {
-                                    Toast.makeText(getActivity(), "Error en el registro, intentalo más tarde",
+                                    Toast.makeText(getActivity(), "Porfavor verifica tus datos",
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
                     } else {
-                        Toast.makeText(getActivity(), "Verifica tu contraseña", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Verifica tu contraseña minimo 8 caracteres",
+                                Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Porfavor completa los campos", Toast.LENGTH_SHORT).show();
